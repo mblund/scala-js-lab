@@ -2,12 +2,16 @@
 
 # Example application written in Scala.js
 
+
 This is another to-do list application. This time written in [Scala.js](https://www.scala-js.org/) and
-[Scalatags](https://github.com/lihaoyi/scalatags) as templates.
+[Scalatags](https://github.com/lihaoyi/scalatags) as html-templates.
 
 The application is inspired of event sourcing to create undo and redo functionality together with scala standard library.
 
-There is a online working version at [Node.js](http://www.magnusberglund.com/scala-js-lab/)
+There is a online working version [here](http://www.magnusberglund.com/scala-js-lab/)
+
+
+
 
 ## Get started
 
