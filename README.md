@@ -1,14 +1,8 @@
 
-http://www.scala-js.org/doc/tutorial.html
-
-
-
-
 
 # Example application written in Scala.js
 
-This is a barebone example of an application written in
-[Scala.js](https://www.scala-js.org/).
+This is another to-do list application. This time written in [Scala.js](https://www.scala-js.org/).
 
 ## Get started
 
@@ -23,6 +17,8 @@ changes.
 
 ## Run the tests
 
+TODO: Write how to use phantom.js
+
 To run the test suite, execute the task `test`. If you have installed
 [Node.js](http://nodejs.org/), you can use
 
@@ -30,6 +26,7 @@ To run the test suite, execute the task `test`. If you have installed
 
 which will cause `test` to run the result of `fastOptJS` with Node.js,
 which is faster.
+
 
 ## The fully optimized version
 
