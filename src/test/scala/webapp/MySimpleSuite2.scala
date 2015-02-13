@@ -1,17 +1,17 @@
 package webapp
 
+import com.mblund.todo.domain.TodoEvent
+import com.mblund.todo.technology.{Command, Topic}
+import com.mblund.todo.technology.technology.Executor
+import com.mblund.todo.views.ApplicationView
 import utest._
 import utest.assert
-import webapp.TutorialApp._
-import webapp.teknik.{Command, Topic}
 
 
-object FooTestSuite extends TestSuite {
+object ApplicationTestSuite extends TestSuite {
   val tests = TestSuite{
     'test2{
-      val x = 1
-      val y = 1
-      assert(x == y)
+
     }
   }
 }
@@ -22,12 +22,11 @@ object MyTestSuite extends TestSuite{
       'world{
 
         try {
-          println("--a")
+
 
           implicit val eventsTopic: Topic[TodoEvent] = new Topic[TodoEvent]
-          println("--b")
 
-          implicit val executor: webapp.teknik.teknik.Executor = new {
+          implicit val executor: Executor = new {
             def run(command: Command): Unit = {
               println("hello")
             }

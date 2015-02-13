@@ -1,10 +1,10 @@
-package webapp
+package com.mblund.todo.views
+
+import com.mblund.todo.domain._
+import com.mblund.todo.technology.{View, Subscriber, Topic}
+import com.mblund.todo.technology.technology.Executor
 
 import org.scalajs.dom.html._
-import webapp.TutorialApp._
-import webapp.teknik.{View, Subscriber, Topic}
-import webapp.teknik.teknik._
-
 import scalatags.JsDom.all._
 
 class ApplicationView(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor) extends Subscriber[TodoEvent] {
