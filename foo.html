@@ -5,80 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Example Scala.js application</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-override.css" rel="stylesheet">
 
 </head>
 <body>
-
-<div id="playground" class="container"></div>
-
-<div><h1>To-do lists</h1>
+<div id="playground" class="container">
 
     <div class="row">
-        <button class="btn">Undo</button>
-        <button class="btn">Redo</button>
-        <button class="btn">New to-do list</button>
-    </div>
-    <div class="row">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><h2>To-do list 0</h2></div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <form action="#"><input type="text" class="form-control" placeholder="New Todo..."></form>
-                        </div>
-                    </div>
-                    <p>
+        <div class="col-md-12">
+            <h1>To-do lists</h1>
 
-                    <div></div>
-                    </p>
-                    <div class="panel-footer"><p><label>0 av totalt 0 todos är klara</label></p>
-
-                        <p>
-                            <button class="btn btn-danger">Delete To-Do List</button>
-                        </p>
-                    </div>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button class="btn btn-default">Undo</button>
+                    <button class="btn btn-default">Redo</button>
+                    <button class="btn btn-primary">New to-do list</button>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><h2>To-do list 1</h2></div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <form action="#"><input type="text" class="form-control" placeholder="New Todo..."></form>
-                        </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">To-do list 0</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="New Todo...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Add</button>
+                            </span>
                     </div>
+                </div>
+                <p>
+
+                <div></div>
+                </p>
+                <div class="panel-footer"><p><label>0 av totalt 0 todos är klara</label></p>
+
                     <p>
-
-                    <div>
-                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
-                                type="text" value="tsetar">
-                            <button class="btn">Remove</button>
-                        </div>
-                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
-                                type="text" value="">
-                            <button class="btn">Remove</button>
-                        </div>
-                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
-                                type="text" value="">
-                            <button class="btn">Remove</button>
-                        </div>
-                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
-                                type="text" value="">
-                            <button class="btn">Remove</button>
-                        </div>
-                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
-                                type="text" value="">
-                            <button class="btn">Remove</button>
-                        </div>
-                    </div>
+                        <button class="btn btn-danger">Delete To-Do List</button>
                     </p>
-                    <div class="panel-footer"><p><label>0 av totalt 5 todos är klara</label></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">To-do list 1</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="New Todo...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Add</button>
+                            </span>
+                        </div>
+                    </form>
 
-                        <p>
-                            <button class="btn btn-danger">Delete To-Do List</button>
-                        </p>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="checkbox" aria-label="...">
+                        </span>
+                        <input type="text" class="form-control" aria-label="...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Remove</button>
+                        </span>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="checkbox" aria-label="...">
+                        </span>
+                        <input type="text" class="form-control" aria-label="...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Remove</button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <p>
+                        <label>0 av totalt 5 todos är klara</label>
+                    </p>
+
+                    <div class="btn-toolbar">
+                        <button class="btn btn-danger">Delete To-Do List</button>
                     </div>
                 </div>
             </div>
