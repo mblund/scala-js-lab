@@ -13,25 +13,25 @@ object ApplicationTestSuite extends TestSuite {
 
       implicit val eventsTopic = new Topic[TodoEvent]
       val events = new mutable.MutableList[TodoEvent]()
-
       eventsTopic.subscribe(new Subscriber[TodoEvent] {
-        override def receive: PartialFunction[TodoEvent, Unit] = {
+        override def receive = {
           case Reset=> events.clear()
           case event:TodoEvent=> events += event }
       })
 
-      val app = new TodoApplication
-      app.run(AddTodoList)
-      app.run(AddTodoList)
-      app.run(AddTodo(1,"Frodo1"))
+      val application = new TodoApplication
+      application.run(AddTodoList)
+      application.run(AddTodoList)
+      application.run(AddTodo(1,"Frodo1"))
       assert(events.last match {
         case TodoAdded(_,_,"Frodo1") => true
         case _ => false
       })
 
-      app.run(Undo)
-      app.run(AddTodo(1,"Todo1"))
-      assert(events.size ==3)
+      application.run(Undo)
+      application.run(AddTodo(1,"Todo1"))
+
+      assert(events.size == 3)
       assert(events.last match {
         case TodoAdded(_,_,"Todo1") => true
         case _ => false
