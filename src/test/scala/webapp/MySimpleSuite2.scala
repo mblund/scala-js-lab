@@ -15,6 +15,7 @@ object FooTestSuite extends TestSuite {
     }
   }
 }
+
 object MyTestSuite extends TestSuite{
   val tests = TestSuite{
     'hello{
