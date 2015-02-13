@@ -78,17 +78,21 @@ object TutorialApp extends JSApp {
   }
 
   class ApplicationView(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor) extends Subscriber[TodoEvent] {
-    val foo = div(`class` := "row")
-    val todoLists = foo.render
+    val todoLists = div().render
     val el =
-      div(
-        h1("To-do lists"),
+      div(cls:="container")(
         div(cls:="row")(
+          div(cls:="col-md-12")(
+            h1("To-do lists"),
+            div(cls:="btn-toolbar")(
+              div(cls:="btn-group")(
+                button(cls:="btn btn-default",  onclick := { () => application.run(Undo)})("Undo"),
+                button(cls:="btn btn-default",  onclick := { () => application.run(Redo)})("Redo"),
+                button(cls:="btn btn-primary",  onclick := { () => application.run(AddTodoList)})("New to-do list")
+              )
+            )
 
-            button(cls:="btn",  onclick := { () => application.run(Undo)})("Undo"),
-            button(cls:="btn",  onclick := { () => application.run(Redo)})("Redo"),
-            button(cls:="btn",  onclick := { () => application.run(AddTodoList)})("New to-do list")
-
+          )
         ),
         div(cls:="row")(
           todoLists
@@ -111,28 +115,33 @@ object TutorialApp extends JSApp {
     val inputField = input(`type` := "text", cls:="form-control", placeholder:="New Todo...").render
 
     val el =
-      div(cls:="col-md-5")(
+      div(cls:="col-md-6")(
         div(cls := "panel panel-primary")(
           div(cls:="panel-heading")(
-            h2(s"To-do list $listId")
+            h3(cls:="panel-title")(s"To-do list $listId")
           ),
           div(cls:="panel-body")(
-            div(cls :="input-group")(
-              form(
-                action := "#",
-                onsubmit := {
-                  () => {
-                    application.run(AddTodo(listId, inputField.value))
-                    inputField.value = ""
-                  }
+            form(
+              action := "#",
+              onsubmit := {
+                () => {
+                  application.run(AddTodo(listId, inputField.value))
+                  inputField.value = ""
                 }
-              )(inputField)
-            )
+              }
+            )(
+                div(cls :="input-group")(
+                  inputField,
+                  span(cls:="input-group-btn")(
+                    button(cls:="btn btn-default", tpe:="submit", value:="Submit")("Add")
+                  )
+                )
+              ),
+            listElem
           ),
-          p(listElem),
           div(cls:="panel-footer")(
             p(isAllDoneView.el),
-            p(
+            div( cls:="btn-toolbar")(
               button(
                 cls:="btn btn-danger",
                 onclick := { () => application.run(RemoveTodoList(listId))}
@@ -180,7 +189,7 @@ object TutorialApp extends JSApp {
 
     def updateText() = {
       val nrFinishedTodos = todos.values.filter(_ == true).size
-      el.textContent = s"${nrFinishedTodos} av totalt  ${todos.size} todos är klara"
+      el.textContent = s"${nrFinishedTodos} of  ${todos.size} to-dos are done."
     }
   }
 
@@ -196,26 +205,32 @@ object TutorialApp extends JSApp {
       case TodoTextChanged(`todoId`, text) => inputElem.value = text
     }
     val checkboxElem: Input = input(
-      `type` := "checkbox",
+      tpe := "checkbox",
       onchange := { () => application.run(ChangeTodoStatus(todoId, checkboxElem.checked))}
     ).render
 
     val inputElem: Input = input(
-      `type` := "text",
+      cls:="form-control",
+      tpe := "text",
       value := text,
       onchange := { () => application.run(ChangeTodoText(todoId, inputElem.value))}
     ).render
 
-    val el = div(`class` := "input-group")(
-      span(`class` := "input-group-addon")(
-        checkboxElem
-      ),
-      inputElem,
-      button(
-        cls:="btn",
-        onclick := { () => application.run(RemoveTodo(todoId))}
-      )("Remove")
-    ).render
+    val el =
+      div(`class` := "input-group")(
+        span(`class` := "input-group-addon")(
+          checkboxElem
+        ),
+        inputElem,
+        span(cls:="input-group-btn")(
+          button(
+            cls:="btn btn-default",
+            tpe:="button",
+            onclick := { () => application.run(RemoveTodo(todoId))}
+          )("Remove")
+        )
+      ).render
+
   }
 
 }
