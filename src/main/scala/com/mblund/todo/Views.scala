@@ -5,9 +5,12 @@ import com.mblund.todo.technology.{View, Subscriber, Topic}
 import com.mblund.todo.technology.technology.Executor
 
 import org.scalajs.dom.html._
+import scala.scalajs.js
 import scalatags.JsDom.all._
 
 class ApplicationView(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor) extends Subscriber[TodoEvent] {
+  eventsTopic.subscribe(this)
+
   val todoLists = div().render
   val el =
     div(cls := "container")(
@@ -38,10 +41,11 @@ class ApplicationView(implicit val eventsTopic: Topic[TodoEvent], implicit val a
 
 class TodoListView(listId: Long)(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor)
   extends View with Subscriber[TodoEvent] {
-
+  eventsTopic.subscribe(this)
   val listElem = div.render
   val isAllDoneView = new IsAllDoneView(listId)
   val inputField = input(`type` := "text", cls := "form-control", placeholder := "New Todo...").render
+
 
   val el =
     div(cls := "col-md-6")(
@@ -51,7 +55,6 @@ class TodoListView(listId: Long)(implicit val eventsTopic: Topic[TodoEvent], imp
         ),
         div(cls := "panel-body")(
           form(
-            action := "#",
             onsubmit := {
               () => {
                 application.run(AddTodo(listId, inputField.value))
@@ -88,6 +91,7 @@ class TodoListView(listId: Long)(implicit val eventsTopic: Topic[TodoEvent], imp
 
 class IsAllDoneView(val listId: Long)(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor)
   extends View with Subscriber[TodoEvent] {
+  eventsTopic.subscribe(this)
   val el = label().render
   var todos = collection.mutable.Map[Long, Boolean]()
   updateText()
@@ -124,6 +128,7 @@ class IsAllDoneView(val listId: Long)(implicit val eventsTopic: Topic[TodoEvent]
 
 class TodoItemView(todoId: Long, text: String)(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor)
   extends View with Subscriber[TodoEvent] {
+  eventsTopic.subscribe(this)
 
   def receive = {
     case TodoRemoved(`todoId`) => {

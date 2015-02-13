@@ -9,8 +9,6 @@ package object technology {
 trait Command
 
 trait Subscriber[T] {
-  implicit val eventsTopic: Topic[T]
-  eventsTopic.subscribe(this)
 
   def receive: PartialFunction[T, Unit]
 }
