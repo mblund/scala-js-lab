@@ -1,16 +1,13 @@
 package webapp.teknik  {
 
 import org.scalajs.dom.Element
-import org.scalajs.dom.html.Input
 
-import scala.scalajs.js.JSApp
-import scalatags.JsDom.all._
-
-package object teknik{
+package object teknik {
   type Executor = {
     def run(command: Command):Unit
   }
 }
+
   trait Command
 
   trait Subscriber[T] {
@@ -18,7 +15,6 @@ package object teknik{
     eventsTopic.subscribe(this)
     def receive: PartialFunction[T, Unit]
   }
-
 
   class IdGenerator {
     private var id = -1L
@@ -28,7 +24,6 @@ package object teknik{
       id
     }
   }
-
 
   class Topic[T] {
     private var subscribers = Set.empty[Subscriber[T]]
@@ -55,6 +50,5 @@ package object teknik{
       }
     }
   }
-
 
 }
