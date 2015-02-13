@@ -39,6 +39,10 @@ class ApplicationView(implicit val eventsTopic: Topic[TodoEvent], implicit val a
   }
 }
 
+trait MyHaxEvent extends js.Object {
+  def preventDefault(): Unit = js.native
+}
+
 class TodoListView(listId: Long)(implicit val eventsTopic: Topic[TodoEvent], implicit val application: Executor)
   extends View with Subscriber[TodoEvent] {
   eventsTopic.subscribe(this)
@@ -56,9 +60,10 @@ class TodoListView(listId: Long)(implicit val eventsTopic: Topic[TodoEvent], imp
         div(cls := "panel-body")(
           form(
             onsubmit := {
-              () => {
+              (e:MyHaxEvent) => {               //TODO: check out this
                 application.run(AddTodo(listId, inputField.value))
                 inputField.value = ""
+                e.preventDefault()
               }
             }
           )(
