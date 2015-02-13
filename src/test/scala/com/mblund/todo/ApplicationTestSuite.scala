@@ -9,7 +9,7 @@ import scala.collection.mutable
 
 object ApplicationTestSuite extends TestSuite {
   val tests = TestSuite{
-    'test2{
+    'Undo{
 
       implicit val eventsTopic = new Topic[TodoEvent]
       val events = new mutable.MutableList[TodoEvent]()
@@ -23,10 +23,19 @@ object ApplicationTestSuite extends TestSuite {
       val app = new TodoApplication
       app.run(AddTodoList)
       app.run(AddTodoList)
-      app.run(AddTodo(1,"Fodo1"))
+      app.run(AddTodo(1,"Frodo1"))
+      assert(events.last match {
+        case TodoAdded(_,_,"Frodo1") => true
+        case _ => false
+      })
+
       app.run(Undo)
-      app.run(AddTodo(1,"Todo"))
+      app.run(AddTodo(1,"Todo1"))
       assert(events.size ==3)
+      assert(events.last match {
+        case TodoAdded(_,_,"Todo1") => true
+        case _ => false
+      })
 
     }
   }
