@@ -2,9 +2,16 @@
 
 # Example application written in Scala.js
 
-This is another to-do list application. This time written in [Scala.js](https://www.scala-js.org/).
+This is another to-do list application. This time written in [Scala.js](https://www.scala-js.org/) and
+[Scalatags](https://github.com/lihaoyi/scalatags) as templates.
+
+The application is inspired of event sourcing to create undo and redo functionality together with scala standard library.
+
+There is a online working version at [Node.js](http://www.magnusberglund.com/scala-js-lab/)
 
 ## Get started
+
+TODO:check if correct
 
 To get started, open `sbt` in this example project, and execute the task
 `fastOptJS`. This creates the file `target/scala-2.11/example-fastopt.js`.
