@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Example Scala.js application</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div id="playground" class="container"></div>
+
+<script type="text/javascript" src="./target/scala-2.11/example-fastopt.js"></script>
+<script type="text/javascript" src="./target/scala-2.11/example-launcher.js"></script>
+<div><h1>To-do lists</h1>
+
+    <div class="row">
+        <button class="btn">Undo</button>
+        <button class="btn">Redo</button>
+        <button class="btn">New to-do list</button>
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h2>To-do list 0</h2></div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <form action="#"><input type="text" class="form-control" placeholder="New Todo..."></form>
+                        </div>
+                    </div>
+                    <p>
+
+                    <div></div>
+                    </p>
+                    <div class="panel-footer"><p><label>0 av totalt 0 todos är klara</label></p>
+
+                        <p>
+                            <button class="btn btn-danger">Delete To-Do List</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h2>To-do list 1</h2></div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <form action="#"><input type="text" class="form-control" placeholder="New Todo..."></form>
+                        </div>
+                    </div>
+                    <p>
+
+                    <div>
+                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
+                                type="text" value="tsetar">
+                            <button class="btn">Remove</button>
+                        </div>
+                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
+                                type="text" value="">
+                            <button class="btn">Remove</button>
+                        </div>
+                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
+                                type="text" value="">
+                            <button class="btn">Remove</button>
+                        </div>
+                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
+                                type="text" value="">
+                            <button class="btn">Remove</button>
+                        </div>
+                        <div class="input-group"><span class="input-group-addon"><input type="checkbox"></span><input
+                                type="text" value="">
+                            <button class="btn">Remove</button>
+                        </div>
+                    </div>
+                    </p>
+                    <div class="panel-footer"><p><label>0 av totalt 5 todos är klara</label></p>
+
+                        <p>
+                            <button class="btn btn-danger">Delete To-Do List</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
