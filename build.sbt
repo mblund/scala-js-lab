@@ -25,6 +25,8 @@ requiresDOM := true
 
 scalaJSStage in Global := FastOptStage
 
+relativeSourceMaps := true
+
 
 
 
