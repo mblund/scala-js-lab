@@ -41,7 +41,6 @@ class TodoApplication()(implicit val eventsTopic: Topic[TodoEvent]) {
     command match {
       case Redo => if (redoStack.nonEmpty) {
         val event = redoStack.pop()
-        undoStack.push(event) //TODO:den här hade jag missat. Gör ett test som failar om den här är borta
         eventsTopic.distribute(event)
       }
       case Undo => if (undoStack.nonEmpty) {
