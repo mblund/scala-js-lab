@@ -11,7 +11,7 @@ object ApplicationTestSuite extends TestSuite {
   val tests = TestSuite{
     'Undo{
 
-      implicit val eventsTopic = new Topic[TodoEvent]
+      val eventsTopic = new Topic[TodoEvent]
       val events = new mutable.MutableList[TodoEvent]()
       eventsTopic.subscribe(new Subscriber[TodoEvent] {
         override def receive = {
@@ -19,7 +19,7 @@ object ApplicationTestSuite extends TestSuite {
           case event:TodoEvent=> events += event }
       })
 
-      val application = new TodoApplication
+      val application = new TodoApplication(eventsTopic)
       application.run(AddTodoList)
       application.run(AddTodoList)
       application.run(AddTodo(1,"Frodo1"))

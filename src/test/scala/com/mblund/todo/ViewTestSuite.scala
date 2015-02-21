@@ -12,19 +12,20 @@ object ViewTestSuite extends TestSuite{
     'argh{
       "The application view render a new to-do list after an TodoListAdded event " - {
 
-        implicit val eventsTopic: Topic[TodoEvent] = new Topic[TodoEvent]
-        implicit val executor:Executor = new { def run(command: Command): Unit = {} }
+        val topic: Topic[TodoEvent] = new Topic[TodoEvent]
+        val executor:Executor = _ => ()
 
-        val view = new ApplicationView
+        val view = new ApplicationView(topic, executor)
         assert( view.el.querySelector(".panel-title") == null )
-        eventsTopic.distribute(TodoListAdded(0))
+        topic.distribute(TodoListAdded(0))
         assert( view.el.querySelector(".panel-title") != null )
       }
       "Failing test in Rhino, 64k function size limit" - {
         try {
-          implicit val eventsTopic = new Topic[TodoEvent]
-          implicit val executor = new { def run(command: Command): Unit = {} }
-          val view = new ApplicationView
+          val topic: Topic[TodoEvent] = new Topic[TodoEvent]
+          val executor:Executor = _ => ()
+
+          val view = new ApplicationView(topic, executor)
           assert(true)
         } catch {
           case e: Exception =>
